@@ -71,3 +71,56 @@ export const servicesData = [
         doloribus dolor provident, eligendi nam? Modi?
         ` },
 ];
+
+export const projectsData = [
+    {
+        title: "Project 0",
+        description: `Molestiae numquam dolores dolorem adipisci recusandae, ex nesciunt. 
+      Voluptatum voluptates quasi tempora hic facilis veritatis consequuntur.`,
+        imgSrc: "image.jpg",
+        link: "#"
+    },
+    {
+        title: "Project 1",
+        description: `Molestiae numquam dolores dolorem adipisci recusandae, ex nesciunt. 
+      Voluptatum voluptates quasi tempora hic facilis veritatis consequuntur.`,
+        imgSrc: "image.jpg",
+        link: "#"
+    },
+    {
+        title: "Project 2",
+        description: `Molestiae numquam dolores dolorem adipisci recusandae, ex nesciunt. 
+      Voluptatum voluptates quasi tempora hic facilis veritatis consequuntur.`,
+        imgSrc: "image.jpg",
+        link: "#"
+    }
+];
+
+// data.js
+
+export const techData = [
+    {
+        iconClass: "devicon-typescript-plain colored",
+        tooltip: "TypeScript — 2 anos de experiência criando apps tipados."
+    },
+    {
+        iconClass: "devicon-javascript-plain colored",
+        tooltip: "JavaScript — manipulação DOM, fetch e SPAs."
+    },
+    {
+        iconClass: "devicon-docker-plain colored",
+        tooltip: "Docker — conteinerização de aplicações Node.js e bancos."
+    },
+    {
+        iconClass: "devicon-tailwindcss-plain colored",
+        tooltip: "Tailwind — design rápido e responsivo."
+    },
+    {
+        iconClass: "devicon-nodejs-plain colored",
+        tooltip: "Node.js — APIs REST e WebSockets em production."
+    },
+    {
+        iconClass: "devicon-postgresql-plain colored",
+        tooltip: "PostgreSQL — modelagem relacional e queries otimizadas."
+    },
+];

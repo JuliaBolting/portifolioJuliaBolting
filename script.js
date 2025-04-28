@@ -1,30 +1,32 @@
-import { aboutMe, educationData, servicesData } from './data.js';
+import { aboutMe, educationData, servicesData, projectsData, techData } from './data.js';
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
 const educationContainer = document.querySelector('.timeline-items');
 const servicesContainer = document.querySelector('.services-container');
+const projectsContainer = document.querySelector('.projects-box');
+const techContainer = document.getElementById('tech-list');
 
 window.onscroll = () => {
-    sections.forEach(sec => {
-        let top = window.scrollY;
-        let offset = sec.offsetTop - 150;
-        let height = sec.offsetHeight;
-        let id = sec.getAttribute('id');
+  sections.forEach(sec => {
+    let top = window.scrollY;
+    let offset = sec.offsetTop - 150;
+    let height = sec.offsetHeight;
+    let id = sec.getAttribute('id');
 
-        if(top >= offset && top < offset + height) {
-            navLinks.forEach(links => {
-                links.classList.remove('active');
-            })
-            document.querySelector('header nav a[href*=' + id + ']').classList.add('active')
-        }
-    })
+    if (top >= offset && top < offset + height) {
+      navLinks.forEach(links => {
+        links.classList.remove('active');
+      })
+      document.querySelector('header nav a[href*=' + id + ']').classList.add('active')
+    }
+  })
 }
 
 menuIcon.onclick = () => {
-    menuIcon.classList.toggle('bx-x');
-    navbar.classList.toggle('active');
+  menuIcon.classList.toggle('bx-x');
+  navbar.classList.toggle('active');
 }
 
 educationData.forEach(item => {
@@ -52,7 +54,28 @@ servicesData.forEach(service => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const aboutMeParagraph = document.getElementById('about-me');
-    aboutMeParagraph.innerHTML = aboutMe;
-  });
+  const aboutMeParagraph = document.getElementById('about-me');
+  aboutMeParagraph.innerHTML = aboutMe;
+});
 
+projectsData.forEach(project => {
+  projectsContainer.innerHTML += `
+    <div class="project-card">
+      <img src="${project.imgSrc}" alt="${project.title}">
+      <h3>${project.title}</h3>
+      <p>${project.description}</p>
+      <div class="btn">
+        <a href="${project.link}" target="_blank">Github Repository</a>
+      </div>
+    </div>
+  `;
+});
+
+techData.forEach(item => {
+  techContainer.innerHTML += `
+    <div class="tech-item">
+      <i class="${item.iconClass}"></i>
+      <div class="tooltip">${item.tooltip}</div>
+    </div>
+  `;
+});
