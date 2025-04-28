@@ -557,6 +557,10 @@ section {
     color: white;
 }
 
+.project-card .btn a {
+    color: var(--bg-color);
+}
+
 .project-card:hover .btn a {
     color: var(--bg-color);
 }
