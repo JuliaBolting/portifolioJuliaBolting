@@ -254,9 +254,19 @@ section {
 }
 
 .text-animation span::before {
-    content: "Web Developer";
+    content: "";
     color: var(--main-color);
-    animation: words 20s infinite;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+body.lang-pt .text-animation span::before {
+    animation-name: words-pt;
+}
+
+body.lang-en .text-animation span::before {
+    animation-name: words-en;
 }
 
 .text-animation span::after {
@@ -276,7 +286,7 @@ section {
     }
 }
 
-@keyframes words {
+/*@keyframes words {
 
     0%,
     20% {
@@ -301,6 +311,62 @@ section {
     81%,
     100% {
         content: "Full-Stack Dev in Training";
+    }
+}*/
+
+@keyframes words-en {
+
+    0%,
+    20% {
+        content: "Kotlin Developer";
+    }
+
+    21%,
+    40% {
+        content: "Android Developer";
+    }
+
+    41%,
+    60% {
+        content: "UI/UX Developer";
+    }
+
+    61%,
+    80% {
+        content: "Junior Software Engineer";
+    }
+
+    81%,
+    100% {
+        content: "Full-Stack Dev in Training";
+    }
+}
+
+@keyframes words-pt {
+
+    0%,
+    20% {
+        content: "Desenvolvedora Kotlin";
+    }
+
+    21%,
+    40% {
+        content: "Desenvolvedora Android";
+    }
+
+    41%,
+    60% {
+        content: "Desenvolvedora UI/UX";
+    }
+
+    61%,
+    80% {
+        content: "Engenheira de Software Júnior";
+    }
+
+    81%,
+    100% {
+        content: "Dev Full-Stack em Formação";
     }
 }
 
@@ -330,6 +396,10 @@ section {
     85% {
         width: calc(100% + 8px);
     }
+}
+
+body.lang-pt .text-animation span::before {
+    animation-name: words-pt;
 }
 
 .heading {
@@ -683,6 +753,20 @@ section {
     margin-top: 2rem;
 }
 
+.form-success {
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    background-color: var(--second-main-color);
+    color: white;
+    font-weight: bold;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 0 0 10px var(--main-color);
+}
+
+.hidden {
+    display: none;
+}
 
 /*Footer*/
 .footer {
@@ -764,12 +848,12 @@ section {
     }
 }
 
-@media(max-width:1350px){
-    
+@media(max-width:1350px) {
+
     header {
         padding: 2rem 3%;
     }
-    
+
     #menu-icon {
         display: block;
         font-size: 20px;
@@ -871,7 +955,7 @@ section {
         transform: scale(1.2);
         filter: drop-shadow(0 0 8px var(--main-color));
     }
-    
+
     .tech-item:hover .tooltip {
         display: inline-block;
     }

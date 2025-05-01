@@ -1,15 +1,27 @@
-import { aboutMe, educationData, servicesData, projectsData, techData, translations } from './data.js';
+import {
+  aboutMe,
+  educationData,
+  servicesData,
+  projectsData,
+  techData,
+  translations,
+  homeData 
+} from './data.js';
+
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
-let currentLang = 'pt-BR';
+let currentLang = localStorage.getItem("lang") || "pt-BR";
+
 const educationContainer = document.querySelector('.timeline-items');
 const servicesContainer = document.querySelector('.services-container');
 const projectsContainer = document.querySelector('.projects-box');
 const techContainer = document.getElementById('tech-list');
 const toggleBtn = document.getElementById("toggle-theme");
 const icon = toggleBtn.querySelector("i");
+const greetingElement = document.querySelector(".home-content h1");
+const introductionElement = document.querySelector(".home-content h3");
 
 window.onscroll = () => {
   sections.forEach(sec => {
@@ -19,69 +31,74 @@ window.onscroll = () => {
     let id = sec.getAttribute('id');
 
     if (top >= offset && top < offset + height) {
-      navLinks.forEach(links => {
-        links.classList.remove('active');
-      })
-      document.querySelector('header nav a[href*=' + id + ']').classList.add('active')
+      navLinks.forEach(link => link.classList.remove('active'));
+      let activeLink = document.querySelector('header nav a[href*=' + id + ']');
+      if (activeLink) activeLink.classList.add('active');
     }
-  })
-}
+  });
+};
 
 menuIcon.onclick = () => {
   menuIcon.classList.toggle('bx-x');
   navbar.classList.toggle('active');
+};
+
+function switchLang(lang) {
+  document.body.classList.remove("lang-pt", "lang-en");
+  document.body.classList.add(lang === "pt-BR" ? "lang-pt" : "lang-en");
 }
 
-educationData.forEach(item => {
-  educationContainer.innerHTML += `
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">${item.year}</div>
-      <div class="timeline-content">
-        <h3><strong>${item.title}</strong></h3>
-        <p>${item.description}</p>
+function renderData(lang) {
+  educationContainer.innerHTML = '';
+  educationData[lang].forEach(item => {
+    educationContainer.innerHTML += `
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">${item.year}</div>
+        <div class="timeline-content">
+          <h3><strong>${item.title}</strong></h3>
+          <p>${item.description}</p>
+        </div>
       </div>
-    </div>
-  `;
-});
+    `;
+  });
 
-servicesData.forEach(service => {
-  servicesContainer.innerHTML += `
-    <div class="service-box">
-      <div class="service-info">
-        <h4>${service.title}</h4>
-        <p>${service.description}</p>
+  servicesContainer.innerHTML = '';
+  servicesData[lang].forEach(service => {
+    servicesContainer.innerHTML += `
+      <div class="service-box">
+        <div class="service-info">
+          <h4>${service.title}</h4>
+          <p>${service.description}</p>
+        </div>
       </div>
-    </div>
-  `;
-});
+    `;
+  });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const aboutMeParagraph = document.getElementById('about-me');
-  aboutMeParagraph.innerHTML = aboutMe;
-});
-
-projectsData.forEach(project => {
-  projectsContainer.innerHTML += `
-    <div class="project-card">
-      <img src="${project.imgSrc}" alt="${project.title}">
-      <h3>${project.title}</h3>
-      <p>${project.description}</p>
-      <div class="btn">
-        <a href="${project.link}" target="_blank">Github Repository</a>
+  projectsContainer.innerHTML = '';
+  projectsData[lang].forEach(project => {
+    projectsContainer.innerHTML += `
+      <div class="project-card">
+        <img src="${project.imgSrc}" alt="${project.title}">
+        <h3>${project.title}</h3>
+        <p>${project.description}</p>
+        <div class="btn">
+          <a href="${project.link}" target="_blank">Github Repository</a>
+        </div>
       </div>
-    </div>
-  `;
-});
+    `;
+  });
 
-techData.forEach(item => {
-  techContainer.innerHTML += `
-    <div class="tech-item">
-      <i class="${item.iconClass}"></i>
-      <div class="tooltip">${item.tooltip}</div>
-    </div>
-  `;
-});
+  techContainer.innerHTML = '';
+  techData[currentLang].forEach(item => {
+    techContainer.innerHTML += `
+      <div class="tech-item">
+        <i class="${item.iconClass}"></i>
+        <div class="tooltip">${item.tooltip}</div>
+      </div>
+    `;
+  });
+}
 
 function applySavedTheme() {
   const savedTheme = localStorage.getItem("theme");
@@ -127,21 +144,66 @@ function applyTranslations(lang) {
     if (t[key]) el.value = t[key];
   });
 
-  if (t.aboutMe) {
-    const about = document.getElementById('about-me');
-    if (about) about.textContent = t.aboutMe;
+  const about = document.getElementById('about-me');
+  if (about && typeof t.aboutMe === 'string') {
+    about.textContent = t.aboutMe;
   }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   applyTranslations(currentLang);
+  renderData(currentLang);
+  switchLang(currentLang);
+
+  greetingElement.innerHTML = homeData[currentLang].greeting;
+  introductionElement.innerHTML = homeData[currentLang].introduction;
 });
 
 document.getElementById("lang-toggle").addEventListener("click", () => {
   currentLang = currentLang === "pt-BR" ? "en" : "pt-BR";
+  localStorage.setItem("lang", currentLang);
   applyTranslations(currentLang);
+  renderData(currentLang);
+  switchLang(currentLang);
+
+  greetingElement.innerHTML = homeData[currentLang].greeting;
+  introductionElement.innerHTML = homeData[currentLang].introduction;
 });
 
 document.getElementById("email-btn").addEventListener("click", () => {
   window.open("https://mail.google.com/mail/?view=cm&fs=1&to=juliabolting.cs@gmail.com", "_blank");
+});
+
+document.getElementById("contact-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const phone = form.phone.value.trim();
+  const subject = form.subject.value.trim();
+  const message = form.message.value.trim();
+
+  if (!email || !subject || !message) {
+    alert(currentLang === "pt-BR"
+      ? "Por favor, preencha os campos obrigatórios: Email, Assunto e Mensagem."
+      : "Please fill in the required fields: Email, Subject and Message.");
+    return;
+  }
+
+  const body = `
+Nome: ${name}
+Email: ${email}
+Telefone: ${phone}
+
+Mensagem:
+${message}
+  `;
+
+  const gmailURL = `https://mail.google.com/mail/?view=cm&fs=1` +
+    `&to=juliabolting.cs@gmail.com` +
+    `&su=${encodeURIComponent(subject)}` +
+    `&body=${encodeURIComponent(body)}`;
+
+  window.open(gmailURL, "_blank");
 });
