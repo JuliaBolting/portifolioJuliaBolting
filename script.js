@@ -7,6 +7,8 @@ const educationContainer = document.querySelector('.timeline-items');
 const servicesContainer = document.querySelector('.services-container');
 const projectsContainer = document.querySelector('.projects-box');
 const techContainer = document.getElementById('tech-list');
+const toggleBtn = document.getElementById("toggle-theme");
+const icon = toggleBtn.querySelector("i");
 
 window.onscroll = () => {
   sections.forEach(sec => {
@@ -78,4 +80,30 @@ techData.forEach(item => {
       <div class="tooltip">${item.tooltip}</div>
     </div>
   `;
+});
+
+function applySavedTheme() {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light") {
+    document.body.classList.add("light-theme");
+    icon.classList.replace("bx-sun", "bx-moon");
+  } else {
+    document.body.classList.remove("light-theme");
+    icon.classList.replace("bx-moon", "bx-sun");
+  }
+}
+
+applySavedTheme();
+
+toggleBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const isLight = document.body.classList.toggle("light-theme");
+
+  if (isLight) {
+    icon.classList.replace("bx-sun", "bx-moon");
+    localStorage.setItem("theme", "light");
+  } else {
+    icon.classList.replace("bx-moon", "bx-sun");
+    localStorage.setItem("theme", "dark");
+  }
 });
