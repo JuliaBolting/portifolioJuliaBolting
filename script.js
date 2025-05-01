@@ -1,8 +1,9 @@
-import { aboutMe, educationData, servicesData, projectsData, techData } from './data.js';
+import { aboutMe, educationData, servicesData, projectsData, techData, translations } from './data.js';
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
+let currentLang = 'pt-BR';
 const educationContainer = document.querySelector('.timeline-items');
 const servicesContainer = document.querySelector('.services-container');
 const projectsContainer = document.querySelector('.projects-box');
@@ -106,4 +107,41 @@ toggleBtn.addEventListener("click", (e) => {
     icon.classList.replace("bx-moon", "bx-sun");
     localStorage.setItem("theme", "dark");
   }
+});
+
+function applyTranslations(lang) {
+  const t = translations[lang];
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.textContent = t[key];
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+
+  document.querySelectorAll('[data-i18n-value]').forEach(el => {
+    const key = el.getAttribute('data-i18n-value');
+    if (t[key]) el.value = t[key];
+  });
+
+  if (t.aboutMe) {
+    const about = document.getElementById('about-me');
+    if (about) about.textContent = t.aboutMe;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  applyTranslations(currentLang);
+});
+
+document.getElementById("lang-toggle").addEventListener("click", () => {
+  currentLang = currentLang === "pt-BR" ? "en" : "pt-BR";
+  applyTranslations(currentLang);
+});
+
+document.getElementById("email-btn").addEventListener("click", () => {
+  window.open("https://mail.google.com/mail/?view=cm&fs=1&to=juliabolting.cs@gmail.com", "_blank");
 });

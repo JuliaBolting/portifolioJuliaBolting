@@ -20,7 +20,6 @@
     --header-color: rgba(0, 0, 0, 0.3);
 }
 
-/* Light Theme */
 .light-theme {
     --bg-color: #ffffff;
     --second-bg-color: #f4f4f4;
@@ -339,6 +338,9 @@ section {
     margin: 5rem 0;
 }
 
+.contact-text {
+    color: var(--text-color);
+}
 
 /* Session Education*/
 .education {
