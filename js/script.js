@@ -52,52 +52,56 @@ function switchLang(lang) {
 function renderData(lang) {
   educationContainer.innerHTML = '';
   educationData[lang].forEach(item => {
-    educationContainer.innerHTML += `
+    const html = `
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">${item.year}</div>
+        <div class="timeline-date">${DOMPurify.sanitize(item.year)}</div>
         <div class="timeline-content">
-          <h3><strong>${item.title}</strong></h3>
-          <p>${item.description}</p>
+          <h3><strong>${DOMPurify.sanitize(item.title)}</strong></h3>
+          <p>${DOMPurify.sanitize(item.description)}</p>
         </div>
       </div>
     `;
+    educationContainer.insertAdjacentHTML('beforeend', html);
   });
 
   servicesContainer.innerHTML = '';
   servicesData[lang].forEach(service => {
-    servicesContainer.innerHTML += `
+    const html = `
       <div class="service-box">
         <div class="service-info">
-          <h4>${service.title}</h4>
-          <p>${service.description}</p>
+          <h4>${DOMPurify.sanitize(service.title)}</h4>
+          <p>${DOMPurify.sanitize(service.description)}</p>
         </div>
       </div>
     `;
+    servicesContainer.insertAdjacentHTML('beforeend', html);
   });
 
   projectsContainer.innerHTML = '';
   projectsData[lang].forEach(project => {
-    projectsContainer.innerHTML += `
+    const html = `
       <div class="project-card">
-        <img src="${project.imgSrc}" alt="${project.title}">
-        <h3>${project.title}</h3>
-        <p>${project.description}</p>
+        <img src="${DOMPurify.sanitize(project.imgSrc)}" alt="${DOMPurify.sanitize(project.title)}">
+        <h3>${DOMPurify.sanitize(project.title)}</h3>
+        <p>${DOMPurify.sanitize(project.description)}</p>
         <div class="btn">
-          <a href="${project.link}" target="_blank">Github Repository</a>
+          <a href="${DOMPurify.sanitize(project.link)}" target="_blank" rel="noopener noreferrer">Github Repository</a>
         </div>
       </div>
     `;
+    projectsContainer.insertAdjacentHTML('beforeend', html);
   });
 
   techContainer.innerHTML = '';
-  techData[currentLang].forEach(item => {
-    techContainer.innerHTML += `
+  techData[lang].forEach(item => {
+    const html = `
       <div class="tech-item">
-        <i class="${item.iconClass}"></i>
-        <div class="tooltip">${item.tooltip}</div>
+        <i class="${DOMPurify.sanitize(item.iconClass)}"></i>
+        <div class="tooltip">${DOMPurify.sanitize(item.tooltip)}</div>
       </div>
     `;
+    techContainer.insertAdjacentHTML('beforeend', html);
   });
 }
 
@@ -190,11 +194,22 @@ document.getElementById("contact-form").addEventListener("submit", function (e) 
   e.preventDefault();
 
   const form = e.target;
+  if (form._honey.value) return;
+
   const name = form.name.value.trim();
   const email = form.email.value.trim();
   const phone = form.phone.value.trim();
   const subject = form.subject.value.trim();
   const message = form.message.value.trim();
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    alert(currentLang === "pt-BR"
+      ? "Por favor, insira um email válido."
+      : "Please enter a valid email.");
+    return;
+  }
 
   if (!email || !subject || !message) {
     alert(currentLang === "pt-BR"
