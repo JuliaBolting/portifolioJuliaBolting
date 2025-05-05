@@ -1,5 +1,5 @@
 <section id="portfolio-description">
-  <h2>🌐 Portfólio Pessoal - Julia Bolting</h2>
+  <h2>🌐 Portifólio Pessoal - Julia Bolting</h2>
   <p>Este é meu site pessoal desenvolvido com foco em <strong>apresentar projetos, habilidades técnicas e trajetória profissional</strong>. O site foi criado com <strong>HTML, CSS e JavaScript</strong>, com suporte a <strong>modo claro/escuro</strong> e <strong>alternância de idiomas (Português/Inglês)</strong>, oferecendo uma experiência personalizada e acessível para visitantes de diferentes perfis.</p>
 
   <h3>✨ Funcionalidades</h3>
@@ -27,7 +27,7 @@
   <h3>🚀 Como visualizar</h3>
   <p>Você pode acessar o site diretamente <a href="https://juliabolting.github.io/portifolioJuliaBolting/" target="_blank">clicando aqui</a></p>
   <p>Ou executar localmente com um servidor estático:</p>
-  <pre><code>git clone https://github.com/JuliaBolting/portfolio.git
+  <pre><code>git clone https://github.com/JuliaBolting/portifolioJuliaBolting.git
 cd portfolio
 npx serve .
 </code></pre>
