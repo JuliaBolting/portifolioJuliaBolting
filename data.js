@@ -209,40 +209,40 @@ export const projectsData = {
     "pt-BR": [
         {
             title: "Portfólio Pessoal",
-            description: "Site pessoal desenvolvido com HTML e CSS para apresentar projetos e habilidades.",
+            description: "Portfólio pessoal responsivo desenvolvido com HTML, CSS e JavaScript, com suporte a tema claro/escuro e idioma em inglês, para apresentar projetos, habilidades e informações de contato.",
             imgSrc: "portifolio_image.png",
             link: "https://github.com/JuliaBolting/portifolioJuliaBolting"
         },
         {
             title: "Análise de Avaliações - AdoroCinema",
-            description: "Projeto em Python para análise de sentimentos de avaliações de filmes utilizando técnicas de NLP.",
-            imgSrc: "image.jpg",
+            description: "Aplicação desenvolvida em Python para análise de sentimentos de avaliações de filmes, utilizando técnicas de Processamento de Linguagem Natural (NLP) para extrair e classificar sentimentos em comentários, com uma interface gráfica.",
+            imgSrc: "extrator_cinema_image.png",
             link: "https://github.com/JuliaBolting/AvaliacoesAdoroCinema"
         },
         {
             title: "Algoritmo Genético",
-            description: "Implementação de um algoritmo genético em Python para resolução de problemas de otimização.",
-            imgSrc: "image.jpg",
+            description: "Algoritmo genético em Python para otimizar a distribuição de produtos de um centro de distribuição para filiais de uma rede de supermercados, minimizando custos logísticos e evitando excesso ou falta de estoque.",
+            imgSrc: "alg_genetico_image.png",
             link: "https://github.com/JuliaBolting/AlgoritmoGenetico"
         }
     ],
     "en": [
         {
             title: "Personal Portfolio",
-            description: "Personal site built with HTML and CSS to showcase projects and skills.",
+            description: "Responsive personal portfolio developed with HTML, CSS, and JavaScript, featuring dark/light theme toggle and ingles support, showcasing projects, skills, and contact information.",
             imgSrc: "portifolio_image.png",
             link: "https://github.com/JuliaBolting/portifolioJuliaBolting"
         },
         {
             title: "Review Analysis – AdoroCinema",
-            description: "Python project for sentiment analysis of movie reviews using NLP techniques.",
-            imgSrc: "image.jpg",
+            description: "Application developed in Python for sentiment analysis of movie reviews, using Natural Language Processing (NLP) techniques to extract and classify sentiments in comments, offering an interactive graphical interface.",
+            imgSrc: "extrator_cinema_image.png",
             link: "https://github.com/JuliaBolting/AvaliacoesAdoroCinema"
         },
         {
             title: "Genetic Algorithm",
-            description: "Python implementation of a genetic algorithm for solving optimization problems.",
-            imgSrc: "image.jpg",
+            description: "Genetic algorithm in Python to optimize product distribution from a distribution center to 10 stores, minimizing logistics costs and balancing inventory based on demand and storage capacity.",
+            imgSrc: "alg_genetico_image.png",
             link: "https://github.com/JuliaBolting/AlgoritmoGenetico"
         }
     ]
