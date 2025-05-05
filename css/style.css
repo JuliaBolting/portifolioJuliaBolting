@@ -556,7 +556,7 @@ body.lang-pt .text-animation span::before {
 
 .service-box {
     background-color: var(--main-color);
-    height: 300px;
+    height: 220px;
     border-radius: 3rem;
     border: 5px solid transparent;
     cursor: pointer;
@@ -583,7 +583,7 @@ body.lang-pt .text-animation span::before {
 .service-info h4 {
     font-size: 2.5rem;
     font-weight: 800;
-    line-height: 2;
+    line-height: 1;
 }
 
 .service-info p {
@@ -592,6 +592,7 @@ body.lang-pt .text-animation span::before {
     max-height: 100px;
     line-height: 1.7;
     margin: auto;
+    margin-top: 1rem;
 }
 
 
@@ -1060,4 +1061,28 @@ body.lang-pt .text-animation span::before {
         grid-template-columns: repeat(1, 1fr);
     }
 
+}
+
+@media (max-width: 768px) {
+    .services {
+        flex-direction: column;
+    }
+
+    .service-box {
+        height: 300px;
+    }
+
+    .service-item {
+        width: 100%;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        height: auto;
+    }
+
+    .service-item h3,
+    .service-item p {
+        font-size: 1rem;
+    }
 }
