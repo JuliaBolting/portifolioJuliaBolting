@@ -5,7 +5,8 @@ import {
   projectsData,
   techData,
   translations,
-  homeData 
+  homeData,
+  tooltipSocialData
 } from './data.js';
 
 let menuIcon = document.querySelector('#menu-icon');
@@ -150,10 +151,20 @@ function applyTranslations(lang) {
   }
 }
 
+function applyTooltips(lang) {
+  document.querySelectorAll('.tooltip-text').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (tooltipSocialData[lang][key]) {
+      el.textContent = tooltipSocialData[lang][key];
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   applyTranslations(currentLang);
   renderData(currentLang);
   switchLang(currentLang);
+  applyTooltips(currentLang);
 
   greetingElement.innerHTML = homeData[currentLang].greeting;
   introductionElement.innerHTML = homeData[currentLang].introduction;
@@ -165,6 +176,7 @@ document.getElementById("lang-toggle").addEventListener("click", () => {
   applyTranslations(currentLang);
   renderData(currentLang);
   switchLang(currentLang);
+  applyTooltips(currentLang);
 
   greetingElement.innerHTML = homeData[currentLang].greeting;
   introductionElement.innerHTML = homeData[currentLang].introduction;

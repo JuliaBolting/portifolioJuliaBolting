@@ -356,3 +356,22 @@ export const translations = {
         aboutMe: aboutMe["en"].text
     }
 };  
+
+export const tooltipSocialData = {
+  "pt-BR": {
+    linkedin: "LinkedIn",
+    github: "GitHub",
+    instagram: "Instagram",
+    lattes: "Lattes",
+    themeToggle: "Alternar tema",
+    languageToggle: "Mudar idioma"
+  },
+  "en": {
+    linkedin: "LinkedIn",
+    github: "GitHub",
+    instagram: "Instagram",
+    lattes: "Lattes",
+    themeToggle: "Toggle theme",
+    languageToggle: "Toggle language"
+  }
+};
