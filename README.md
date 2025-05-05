@@ -25,7 +25,7 @@
   </ul>
 
   <h3>🚀 Como visualizar</h3>
-  <p>Você pode acessar o site diretamente <a href="https://seu-link-aqui.vercel.app" target="_blank">clicando aqui</a></p>
+  <p>Você pode acessar o site diretamente <a href="https://juliabolting.github.io/portifolioJuliaBolting/" target="_blank">clicando aqui</a></p>
   <p>Ou executar localmente com um servidor estático:</p>
   <pre><code>git clone https://github.com/JuliaBolting/portfolio.git
 cd portfolio
