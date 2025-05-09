@@ -90,6 +90,7 @@ function renderData(lang) {
         </div>
       </div>
     `;
+    
     projectsContainer.insertAdjacentHTML('beforeend', html);
   });
 
