@@ -7,7 +7,7 @@ import {
   translations,
   homeData,
   tooltipSocialData
-} from '/js/data.js';
+} from './data.js';
 
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
