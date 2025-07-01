@@ -13,7 +13,7 @@ let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
-let currentLang = localStorage.getItem("lang") || "pt-BR";
+let currentLang = localStorage.getItem("lang") || (navigator.language.startsWith("pt") ? "pt-BR" : "en");
 
 const educationContainer = document.querySelector('.timeline-items');
 const servicesContainer = document.querySelector('.services-container');
